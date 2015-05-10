@@ -1,0 +1,97 @@
+<html>
+<head>
+    
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <script type="text/javascript" src="js/moment-with-locales.min.js"></script>
+    <script type='text/javascript' src='js/angular.min.js'></script>
+    <script type='text/javascript' src='js/script.js'></script>
+
+    <style>
+        body {
+            background: #fff;
+            color:#000
+        }
+        
+        #header {
+            width : 100%;
+            height: 30px;
+            display: block;
+            background: #333;
+            margin-bottom: 20px;
+            color:#eee;
+        }
+        
+        #login-form {
+            border:1px solid #ccc;
+            border-radius: 3px;
+            padding: 10px;
+        }
+        
+        #clock {
+            color:#aaa;
+            margin-right: 10px
+        }
+        
+        #message {
+            display: block;
+            padding:5px;
+            background-color: crimson;
+            color:#fff;
+            margin-bottom:5px;
+        }
+        
+    </style>
+    
+</head>
+
+<body>
+    <div id="header">
+        <div id="clock" class="u-pull-right" ng-controller="clock">{{clock}}</div>
+    </div>
+
+    <div class="container">
+        
+        <div class="row">
+            <div class="four columns" style="text-indent:-9999px">.</div>
+            
+            <div class="four columns">
+                
+                <div class="users" ng-controller="login">
+                    
+                    <form ng-submit="login()" id="login-form">
+                        
+                        <span ng-show="message" id="message">{{message}}</span>
+                        
+                        <select
+                            
+                            ng-options="user as user.display_name for user in users"
+                            ng-model="selectedUser"
+                            ng-change="startLogin()"
+                            class="u-full-width">
+                                <option value="">Select user</option>
+                        </select>
+                        
+                        <input 
+                            ng-show="selectedUser"
+                            type="password" 
+                            ng-model="passwd" 
+                            name="passwd" 
+                            placeholder="password"
+                            class="u-full-width"/>
+                        <input
+                            ng-show="selectedUser"
+                            type="submit"
+                            value="login"
+                            class="u-full-width button-primary"/>
+                    </form>
+
+                </div>  
+
+            </div>
+            
+        </div>
+    </div>
+    
+</body>
+</html>
